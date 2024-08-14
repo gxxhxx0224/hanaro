@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>추천 기능</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .container {
+            margin: 20px;
+        }
+        .count {
+            font-size: 24px;
+            margin-right: 10px;
+        }
+        button {
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <button id="button1" type="button">
+            <img id=buttonImage src="https://cdn.ppomppu.co.kr/zboard/data3/2019/1024/20191024033639_bfhbugyo.jpg" width="90px" height="90px" />
+            <span class="count" id="count">0<br></span>
+        </button>
+    </div>
+
+    <script>
+        var once = 0; // 최초 3회
+
+        function increaseCount() {
+            var countElement = document.getElementById('count');
+            var currentCount = parseInt(countElement.innerText);
+            countElement.innerText = currentCount + 1;
+        }
+
+        function change(){
+            var btn=document.getElementById('buttonImage');
+            btn.src="https://fcseoulite.me/files/attach/images/192/718/703/011/cfcdb0116fdb39e17693ee9066e139e9.jpg";
+        }
+
+        function handleClick() {
+            if (once<3) {
+                once = once+1; // 3회 클릭 후 더 이상 클릭 불가
+                increaseCount();
+                alert('추천되었습니다.');
+
+                if(once===3) {
+                    change();
+                }
+            }
+            else {
+                alert('추천은 3번만 가능합니다.');
+            }
+        }
+        document.getElementById('button1').addEventListener('click', handleClick);
+    </script>
+</body>
+</html>
